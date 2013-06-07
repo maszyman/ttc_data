@@ -1,0 +1,47 @@
+# this is the startup process for root
+Executable="femtoAliroot.sh";
+Jobtag={"comment:AliEn femtoscopic analysis "};
+
+# we split per storage element
+#Split="production:31-31";
+Split="se";
+
+# we want each job to read 100 input files
+SplitMaxInputFileNumber="5";
+
+# we need ROOT and the API service configuration package
+Packages={"VO_ALICE@AliRoot::v5-04-63-AN","VO_ALICE@ROOT::v5-34-07","VO_ALICE@APISCONFIG::V1.1x"};
+
+TTL = "86400";
+MasterResubmitThreshold="0";
+#MasterResubmitThreshold="1%";
+MaxWaitingTime="24h";
+
+#ROOT will read this collection file to know, which files to analyze
+InputDataList="wn.xml";
+
+#ROOT requires the collection file in the xml-single format
+#InputDataListFormat="xml-single";
+
+# this is our collection file containing the files to be analyzed
+InputDataCollection="LF:/alice/cern.ch/user/m/maszyman/2012/LHC11h/Lists/PbPb.2.76TeV.LHC11h.pass2.$1.aod115.field1.xml,nodownload";
+
+InputFile= {"LF:/alice/cern.ch/user/m/maszyman/2012/QvectorTest/runBatch.C",
+	    "LF:/alice/cern.ch/user/m/maszyman/2012/QvectorTest/AddTaskFemto.C",
+	    "LF:/alice/cern.ch/user/m/maszyman/2012/ttc/ttc16dca24/ConfigFemtoAnalysis.C",
+	    "LF:/alice/cern.ch/user/m/maszyman/2012/ttc/PWGCFfemtoscopy.par",
+	    "LF:/alice/cern.ch/user/m/maszyman/2012/ttc/PWGCFfemtoscopyUser.par"};
+
+# Output directory
+OutputArchive={
+	"log_archive.zip:stdout,stderr@disk=2",
+	"root_archive.zip:*.root@disk=2"};
+
+# Output directory
+OutputDir="/alice/cern.ch/user/m/maszyman/2012/ttc/ttc16dca24/output_f1/$1/#alien_counter#";
+
+# email
+#Email="Adam.Kisiel@cern.ch";
+
+#Validation
+Validationcommand = "/alice/cern.ch/user/m/maszyman/2012/validation.sh";

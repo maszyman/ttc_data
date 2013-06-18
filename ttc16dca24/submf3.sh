@@ -86,7 +86,7 @@ runs="
 169835
 "
 
-for run in $runs1; do
+for run in $runs5; do
 
     alien_submit anamyf3.jdl $run # do runs5 wlaczenie (error split!)
     # alien_submit mymergef3.jdl $run # do runs3 wlacznie

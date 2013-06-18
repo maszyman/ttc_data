@@ -1,0 +1,30 @@
+# this is the startup process for root
+Executable="runmerge.sh";
+Jobtag={"comment:Merging on the grid "};
+
+# we split per storage element
+Split="production:1-1";
+
+# we need ROOT and the API service configuration package
+Packages={"VO_ALICE@ROOT::v5-34-02-1","VO_ALICE@APISCONFIG::V1.1x"};
+TTL = "16000";
+
+
+InputFile={"LF:/alice/cern.ch/user/m/majanik/2012/merge.C"};
+#	   "LF:/alice/cern.ch/user/l/lgraczyk/2011/DEtaDPhi/PID/pp/protonsLudmila/MergeTest/listtodir.C"};
+
+# Output directory
+OutputArchive={
+	"log_archive.zip:stdout,stderr@disk=1",
+	"root_archive.zip:*.root@disk=2"};
+#OutputArchive={
+#	"log_archive.zip:stdout,stderr@Alice::::File"};
+
+SplitArguments={"/alice/cern.ch/user/m/maszyman/2012/ttc/ttcmin/output_f3/$1/"};
+
+# Output directory
+OutputDir="/alice/cern.ch/user/m/maszyman/2012/ttc/ttcmin/output_f3/$1/output";
+
+
+# email
+#Email="maszyman@cern.ch";

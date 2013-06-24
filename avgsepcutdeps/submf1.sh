@@ -188,15 +188,11 @@ runs10h="
 
 for run in $runs1 ; do
 
-    #alien_submit anamyf1_10h.jdl $run # do runs6 wlacznie
     #alien_submit anamyf1.jdl $run # do runs6 wlacznie
-    #alien_submit anamyf1tpconly.jdl $run # do runs6 wlacznie
 
-    #alien_submit mymergef1_10h.jdl $run # do runs6 wlacznie
-    #alien_submit mymergef1.jdl $run # do runs6 wlacznie
-    #alien_submit mymergef1tpconly.jdl $run # do runs6 wlacznie
+    # alien_submit mymergef1.jdl $run # do runs6 wlacznie
 
-    alien_cp alien:///alice/cern.ch/user/m/maszyman/2012/ttc/avgsep/tpconly/output_f1/$run/output/Merged.root resultsf1/$run.root # runs2 poszlo
+    # alien_cp alien:///alice/cern.ch/user/m/maszyman/2012/ttc/avgsepcutdeps/output_f1/$run/output/Merged.root resultsf1/$run.root # runs2 poszlo
     root -l -b -x -q 'listtodir.C("resultsf1/'$run'.root")';
     rm resultsf1/$run.root
 
